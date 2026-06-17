@@ -41,70 +41,15 @@
         
         <!-- SECTION 1: Exploration (Tabs) -->
         <section id="explore-section" class="mb-12 w-full max-w-6xl mx-auto">
-            <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
-                <!-- Tabs Header -->
-                <div id="tabs-header" class="flex border-b border-gray-200 bg-gray-100 pt-2 md:pt-3 px-2 md:px-4 gap-1 md:gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="tablist">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 flex flex-col md:flex-row">
+                <!-- Tabs Header (Left Nav on Desktop) -->
+                <div id="tabs-header" class="flex md:flex-col border-b md:border-b-0 md:border-r border-gray-200 bg-gray-50 md:w-[280px] lg:w-[320px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden shrink-0" role="tablist">
                     <!-- Tabs will be injected here -->
                 </div>
                 
                 <!-- Tab Content Area -->
-                <div id="tab-content-container" class="p-4 md:p-6 min-h-[180px] bg-white">
+                <div id="tab-content-container" class="flex-1 p-5 md:p-8 min-h-[300px] bg-white">
                     <!-- Content injected here -->
-                </div>
-            </div>
-            
-            <div id="unlock-message" class="text-center mt-6 hidden fade-in">
-                <button id="start-quiz-btn" class="bg-teal hover:bg-navy text-white font-bold py-2 px-6 text-sm md:text-base rounded-full shadow-lg transition-colors duration-300 transform hover:scale-105">
-                    Start Knowledge Check
-                </button>
-            </div>
-        </section>
-
-        <!-- SECTION 2: Knowledge Check (Quiz) -->
-        <section id="quiz-section" class="hidden max-w-3xl mx-auto">
-            <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                <div class="bg-lightteal py-3 px-5 border-b border-gray-200 flex justify-between items-center">
-                    <h2 class="text-lg md:text-xl font-bold text-navy">Knowledge Check</h2>
-                    <span id="question-tracker" class="text-xs md:text-sm font-semibold text-teal bg-white px-3 py-1 rounded-full shadow-sm">Question 1 of 5</span>
-                </div>
-                
-                <div class="p-5 md:p-6">
-                    <div id="quiz-content">
-                        <h3 id="question-text" class="text-lg font-semibold mb-4 text-navy">Question goes here?</h3>
-                        <div id="options-container" class="space-y-2">
-                            <!-- Options injected here -->
-                        </div>
-                    </div>
-                    
-                    <div id="feedback-area" class="mt-4 hidden p-3 rounded-lg text-sm md:text-base">
-                        <p id="feedback-text" class="font-medium"></p>
-                    </div>
-
-                    <div class="mt-6 flex justify-end">
-                        <button id="next-question-btn" class="hidden bg-navy hover:bg-opacity-90 text-white font-bold py-2 px-6 text-sm md:text-base rounded-lg transition-colors">
-                            Next Question
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Results Section -->
-        <section id="results-section" class="hidden max-w-2xl mx-auto text-center fade-in">
-            <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
-                <div class="w-16 h-16 bg-lightteal rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <h2 class="text-2xl md:text-3xl font-bold text-navy mb-2">Module Complete!</h2>
-                <p class="text-sm md:text-base text-gray-600 mb-6">You have successfully reviewed the AI Literacy fundamentals.</p>
-                <div class="bg-gray-50 rounded-lg p-4 mb-6 inline-block">
-                    <p class="text-xs text-silver uppercase tracking-wide font-semibold mb-1">Your Score</p>
-                    <p id="final-score" class="text-3xl font-bold text-teal">0 / 5</p>
-                </div>
-                <div class="flex justify-center space-x-4">
-                    <button onclick="location.reload()" class="bg-white border-2 border-silver text-navy hover:border-navy font-bold py-2 px-6 text-sm md:text-base rounded-lg transition-colors">
-                        Review Again
-                    </button>
                 </div>
             </div>
         </section>
@@ -146,84 +91,13 @@
             }
         ];
 
-        // Quiz Data
-        const quizData = [
-            {
-                question: "What is AI literacy?",
-                options: [
-                    "Knowing how to code AI systems from scratch",
-                    "The set of skills needed to critically evaluate and effectively use AI",
-                    "Replacing human oversight with AI entirely"
-                ],
-                correct: 1,
-                feedback: "Correct! AI literacy is the set of skills needed to critically evaluate and effectively use AI technologies."
-            },
-            {
-                question: "When writing a prompt, what is key to getting a better output result?",
-                options: [
-                    "Using only a single, short sentence",
-                    "Iteration",
-                    "Avoid using personas"
-                ],
-                correct: 1,
-                feedback: "Correct! Iteration is key to getting a better output result. You should also give clear instructions and assign a persona."
-            },
-            {
-                question: "How does AI transform L&D environments?",
-                options: [
-                    "It creates a one-size-fits-all approach",
-                    "It eliminates the need for human mentoring",
-                    "It enables personalised learning paths and operational efficiency"
-                ],
-                correct: 2,
-                feedback: "Correct! AI shifts L&D from one-size-fits-all to highly personalised experiences and helps automate admin tasks."
-            },
-            {
-                question: "What is an AI 'hallucination'?",
-                options: [
-                    "When an AI system overheats",
-                    "An inaccurate or misleading output generated by AI",
-                    "When an AI accesses private learner information correctly"
-                ],
-                correct: 1,
-                feedback: "Correct! Hallucinations are inaccurate or misleading outputs. Human oversight is critical to catch these."
-            },
-            {
-                question: "What drives successful AI adoption in an organisation?",
-                options: [
-                    "Treating it as a separate, highly technical project",
-                    "Building AI directly into daily workflows and making it easy to use",
-                    "Forcing usage without access to context or data"
-                ],
-                correct: 1,
-                feedback: "Correct! AI should be built directly into daily workflows, be easy to use, and have access to specific organisational context."
-            }
-        ];
-
         // DOM Elements
         const tabsHeader = document.getElementById('tabs-header');
         const tabContentContainer = document.getElementById('tab-content-container');
-        const unlockMessage = document.getElementById('unlock-message');
-        const startQuizBtn = document.getElementById('start-quiz-btn');
-        const exploreSection = document.getElementById('explore-section');
-        const quizSection = document.getElementById('quiz-section');
-        const resultsSection = document.getElementById('results-section');
-        
-        // Quiz DOM Elements
-        const questionText = document.getElementById('question-text');
-        const questionTracker = document.getElementById('question-tracker');
-        const optionsContainer = document.getElementById('options-container');
-        const feedbackArea = document.getElementById('feedback-area');
-        const feedbackText = document.getElementById('feedback-text');
-        const nextQuestionBtn = document.getElementById('next-question-btn');
-        const finalScoreEl = document.getElementById('final-score');
 
         // State variables
         let activeTabId = contentData[0].id;
         const viewedTabs = new Set([activeTabId]);
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let quizUnlocked = false;
 
         function renderTabs() {
             tabsHeader.innerHTML = '';
@@ -231,14 +105,14 @@
             contentData.forEach((data) => {
                 const isActive = data.id === activeTabId;
                 
-                const baseClasses = 'shrink-0 md:flex-1 py-2.5 md:py-3 px-4 text-sm md:text-base transition-all focus:outline-none flex items-center justify-center whitespace-nowrap rounded-t-xl border -mb-[1px]';
-                const activeClasses = 'bg-white text-teal border-gray-200 border-b-white font-bold z-10';
-                const inactiveClasses = 'bg-transparent text-navy border-transparent hover:bg-white/60 hover:text-teal font-medium z-0';
+                const baseClasses = 'shrink-0 w-auto md:w-full py-3.5 md:py-4 px-4 md:px-5 text-sm md:text-base text-left transition-all focus:outline-none flex items-center justify-between gap-3 whitespace-nowrap md:whitespace-normal border-b-2 md:border-b-0 md:border-l-4';
+                const activeClasses = 'bg-white text-teal border-teal font-bold shadow-sm md:shadow-none z-10';
+                const inactiveClasses = 'bg-transparent text-navy border-transparent hover:bg-gray-200/60 hover:text-teal font-medium z-0';
                 
                 const isViewed = viewedTabs.has(data.id);
                 
                 // Checkmark for viewed tabs
-                const checkIcon = isViewed ? `<svg class="w-4 h-4 ml-1.5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>` : '';
+                const checkIcon = isViewed ? `<svg class="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>` : '';
                 
                 const tabBtn = document.createElement('button');
                 tabBtn.className = `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`;
@@ -246,7 +120,7 @@
                 tabBtn.setAttribute('aria-selected', isActive);
                 tabBtn.onclick = () => switchTab(data.id);
                 
-                tabBtn.innerHTML = `<span>${data.title}</span> ${checkIcon}`;
+                tabBtn.innerHTML = `<span class="flex-1">${data.title}</span> ${checkIcon}`;
                 tabsHeader.appendChild(tabBtn);
             });
             
@@ -274,91 +148,10 @@
             activeTabId = tabId;
             viewedTabs.add(tabId);
             renderTabs();
-            checkUnlock();
         }
-
-        function checkUnlock() {
-            if (!quizUnlocked && viewedTabs.size === contentData.length) {
-                quizUnlocked = true;
-                unlockMessage.classList.remove('hidden');
-            }
-        }
-
-        function startQuiz() {
-            exploreSection.classList.add('hidden');
-            quizSection.classList.remove('hidden');
-            loadQuestion();
-        }
-
-        function loadQuestion() {
-            const currentQuiz = quizData[currentQuestionIndex];
-            questionText.textContent = currentQuiz.question;
-            questionTracker.textContent = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
-            
-            optionsContainer.innerHTML = '';
-            feedbackArea.classList.add('hidden');
-            nextQuestionBtn.classList.add('hidden');
-
-            currentQuiz.options.forEach((option, index) => {
-                const button = document.createElement('button');
-                button.className = 'w-full text-left p-3 text-sm md:text-base rounded-lg border-2 border-gray-200 font-medium text-navy bg-white hover:bg-gray-50 focus:outline-none transition-colors';
-                button.textContent = option;
-                button.onclick = () => selectAnswer(index, button);
-                optionsContainer.appendChild(button);
-            });
-        }
-
-        function selectAnswer(selectedIndex, selectedButton) {
-            const currentQuiz = quizData[currentQuestionIndex];
-            const buttons = optionsContainer.querySelectorAll('button');
-            
-            // Disable all buttons after selection
-            buttons.forEach(btn => btn.disabled = true);
-            
-            feedbackArea.classList.remove('hidden');
-            nextQuestionBtn.classList.remove('hidden');
-            
-            if (selectedIndex === currentQuiz.correct) {
-                selectedButton.classList.replace('border-gray-200', 'border-green-500');
-                selectedButton.classList.replace('bg-white', 'bg-green-50');
-                feedbackArea.className = 'mt-4 p-3 rounded-lg text-sm md:text-base bg-green-100 text-green-800';
-                feedbackText.textContent = currentQuiz.feedback;
-                score++;
-            } else {
-                selectedButton.classList.replace('border-gray-200', 'border-red-500');
-                selectedButton.classList.replace('bg-white', 'bg-red-50');
-                
-                // Highlight correct answer
-                buttons[currentQuiz.correct].classList.replace('border-gray-200', 'border-green-500');
-                buttons[currentQuiz.correct].classList.replace('bg-white', 'bg-green-50');
-                
-                feedbackArea.className = 'mt-4 p-3 rounded-lg text-sm md:text-base bg-red-100 text-red-800';
-                feedbackText.textContent = `Incorrect. ${currentQuiz.feedback}`;
-            }
-        }
-
-        function nextQuestion() {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < quizData.length) {
-                loadQuestion();
-            } else {
-                showResults();
-            }
-        }
-
-        function showResults() {
-            quizSection.classList.add('hidden');
-            resultsSection.classList.remove('hidden');
-            finalScoreEl.textContent = `${score} / ${quizData.length}`;
-        }
-
-        // Event Listeners
-        startQuizBtn.addEventListener('click', startQuiz);
-        nextQuestionBtn.addEventListener('click', nextQuestion);
 
         // Initialize
         renderTabs();
-        checkUnlock(); // Check just in case there's only 1 tab
 
     </script>
 </body>
